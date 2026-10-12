@@ -17,6 +17,8 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(set-frame-font "CaskaydiaCove Nerd Font-14" nil t)
+
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (require 'use-package)
@@ -27,6 +29,24 @@
   (package-install 'doom-themes))
 (load-theme 'doom-vibrant t)
 (doom-themes-org-config)
+
+;; ligatures
+(use-package ligature
+  :ensure t
+  :config
+  (ligature-set-ligatures 'ts-mode '("|||=" "||=" "|=" "|>" "##" "###" "####" "---" "-->" "->>" "->"))
+  
+  (ligature-set-ligatures 'prog-mode
+    '("|||=" "||=" "|=" "|>" "##" "###" "####" "---" "-->" "->>" "->" "->=" "<-"
+      "<=" "<=>" "<==" "<-->" "<-<" "<<-" "<~~" "<~" "<$" "<+" "<*" " Baker "
+      " Baker= " ">-" ">=" ">>=" ">>-" ">=" "==" "===" "==>" "=>" "=>>" "=:="
+      "!= " "!==" "!!" "!=" "=:=" "=:=" "=:=" "=:=" "::" ":::" ":=" "::="
+      "=:=" "=:=" "/=" "/==" "/=" "*/" "/*" "*=" "++" "+++" "+=" "-="
+      "~=" "~>" "~~" "~~>" "!!" "!=" "===" "==" ">>" "<<" "::" "&&"
+      "&&&" "||" "|||" "??" "?=" "?." "?:" "?-" ".-" ".=" "<^>" "<|>"
+      "<>" "##" "###" "####" "=>" "->"))
+  
+  (global-ligature-mode t))
 
 ;; binds.
 (global-set-key (kbd "C-c l") 'kill-current-buffer)
